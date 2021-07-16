@@ -52,7 +52,7 @@ date = time.strftime("%Y-%m-%d", time.localtime())
 
 # get device and session ids
 ids = IDS()
-ids.sessionIncrement()
+#ids.sessionIncrement()
 
 # speed for the stepper motor
 motor_step = ids.step
@@ -145,6 +145,7 @@ if not PUMP_CALIBRATION:
         sessionLength = int(sessioninfo[4])
 
     # file to store RFID scann times
+    ids.sessionIncrement()
     RFIDFILE = DATA_DIR + DATA_PREFIX + date + "_" + \
         str(ids.devID) + "_S"+str(ids.sesID) + \
         "_" + str(sessionLength) + "_RFID.csv"
