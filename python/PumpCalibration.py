@@ -51,7 +51,7 @@ def pump_calibration(step_size, fname):
                     mover.move("forward", step)
 
             act_count += 1
-            print("count" + act_count)
+            print("count" + str(act_count))
             if act_count == 15:
                 response = input("please enter the amount measured (numeric value) or scan the command id again to exit: ").strip()
                 # if the same command RFID is scanned again, exit the while loop
