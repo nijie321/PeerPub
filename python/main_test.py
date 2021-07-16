@@ -6,6 +6,8 @@ import time
 import subprocess
 import argparse
 import logging
+import os
+import glob
 
 # third-party libraries
 from gpiozero import Button
@@ -57,6 +59,20 @@ motor_step = ids.step
 
 sTime = time.time()
 
+# get software version from lastest update
+filepath = '/home/pi/SocialDrinking/*_update'
+if glob.glob(filepath):
+  for update in glob.glob(filepath):
+      if os.path.getsize(update) > 0:
+        with open(update, 'r') as f:
+            for line in f:
+                pass
+            last_line = line
+        print("Latest update: \n" + last_line)
+      else: print("Empty update_file")
+else:
+    print("update_file does not exist")
+    
 # constant for pump calibration program and update github chip
 PUMP_CALIBRATION = False
 UPDATE_REPO = False
