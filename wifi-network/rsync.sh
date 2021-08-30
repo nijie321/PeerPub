@@ -15,8 +15,8 @@ delay=`shuf -i1-3 -n1`
 #	fi
 #done
 
-# remove files older than 15 days but keep git update files
-rm `find /home/pi/SocialDrinking/* -mtime +15 |grep -v update` 
+# remove files older than 15 days but keep stepsize and git update files
+rm `find /home/pi/SocialDrinking/* -mtime +15 |grep -v 'steps\|update'` 
 
 gzip -f /home/pi/SocialDrinking/*csv
 
