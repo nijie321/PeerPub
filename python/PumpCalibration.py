@@ -91,8 +91,9 @@ def pump_calibration(step_size, fname):
 
     f_specifiers = ""
     file_path = file_dir.format(fname)
+    print("Update stepsize in " +fname)
     if os.path.isfile(file_path):
-        f_specifiers = "w"
+        f_specifiers = "a"
     else:
         f_specifiers = "a"
 
