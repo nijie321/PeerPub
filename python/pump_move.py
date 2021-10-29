@@ -49,7 +49,7 @@ class PumpMove:
         direction_dict = {"forward": self.CW, "backward": self.CCW}
 
         try:
-            self.GPIO.output(self.MODE, self.RESOLUTION['Full'])
+            self.GPIO.output(self.MODE, self.RESOLUTION['1/8'])
             self.GPIO.output(self.DIR, direction_dict[direction])
 
             for _ in range(steps):
