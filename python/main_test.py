@@ -131,6 +131,10 @@ if not PUMP_CALIBRATION:
 
     forwardbtn.when_pressed = forward
     backwardbtn.when_pressed = backward
+    
+    #push syringe to wet spout
+    mover.move("forward")
+    mover.move("forward")
 
     # ignore the if part (for test)
     if args.test:
