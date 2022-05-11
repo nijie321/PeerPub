@@ -141,7 +141,7 @@ def resetPumpTimeout(rat):
 houselight_on = False
 def houselight_check():
     global houselight_on
-    blink_light_command = "sudo python ./blinkenlights.py &"
+    blink_light_command = "sudo python3 ./blinkenlights.py &"
     if not FORWARD_LIMIT_REACHED:
         if (time.localtime().tm_hour >= 21 and houselight_on is False) or (time.localtime().tm_hour >= 9 and time.localtime().tm_hour < 21) and houselight_on:
             houselight_on = True
@@ -212,7 +212,7 @@ while lapsed < sessionLength:
                         print("timeout on " + rat.ratid)
                         pumpTimer.start()
 
-                        subprocess.call('sudo python ' + './blinkenlights.py -reward_happened True&', shell=True)
+                        subprocess.call('sudo python3 ' + './blinkenlights.py -reward_happened True&', shell=True)
 
                         # record reward data
                         dlogger.logEvent(rat.ratid, time.time()- scantime, "REWARD", time.time() - sTime)
