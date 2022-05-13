@@ -55,7 +55,7 @@ def pump_calibration(step_size, fname):
             if act_count == 15:
                 response = input("please enter the amount measured (numeric value) or scan the command id again to exit: ").strip()
                 # if the same command RFID is scanned again, exit the while loop
-                if response[-2:] == '6b' or response[-2:] == '89' or response[-2:] == 'ba':
+                if response[-2:] == '6b' or response[-2:] == '8e' or response[-2:] == 'ba':
                     break
                 else:
                     try:
