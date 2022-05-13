@@ -90,7 +90,7 @@ if RatID[-2:] == "94" or RatID[-2:] == "fa":
     #sys.exit()
     
 # check the last 2 characters
-if RatID[-2:] == "6b" or RatID[-2:] == "ba":
+if RatID[-2:] == "6b" or RatID[-2:] == "ba" or RatID[-2:] == "8e":
     PUMP_CALIBRATION = True
 
 if RatID[-2:] == "0c" or RatID[-2:] == "fe":
