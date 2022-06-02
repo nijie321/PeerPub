@@ -15,6 +15,10 @@ delay=`shuf -i1-3 -n1`
 #	fi
 #done
 
+BoxID=$( cat /home/pi/deviceid )
+rsync -auvp -e ssh /home/pi/image/ root@149.56.128.122:~/Dropbox/Pies/Images/$BoxID/
+rm `find /home/pi/image/* -mtime +15`
+
 # remove files older than 15 days but keep stepsize and git update files
 rm `find /home/pi/SocialDrinking/* -mtime +15 |grep -v 'steps\|update'` 
 
@@ -24,6 +28,8 @@ rsync -auvp -e ssh /home/pi/SocialDrinking/ root@149.56.128.122:~/Dropbox/Pies/S
 sleep 15
 #sync one more time
 #rsync -auvp -e ssh /home/pi/SocialDrinking/ root@149.56.128.122:~/Dropbox/Pies/SocialDrinking/ 
+
+rsync -auvp -e ssh /home/pi/image/ root@149.56.128.122:~/Dropbox/Pies/Images/$BoxID/
 
 echo "Use sync key to sync data again, or scan any other key to reboot"
 read var
