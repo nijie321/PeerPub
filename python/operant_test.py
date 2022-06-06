@@ -107,6 +107,9 @@ dlogger.createDataFile(schedule="{}{}TO{}".format(schedule,str(ratio),str(timeou
 # Get start time
 sTime = time.time()
 
+#Record images
+subprocess.Popen(['/home/pi/openbehavior/PeerPub/utility_script/photo.sh %s' % (sessionLength)], shell=True)
+
 # GLOBAL VARIABLES
 FORWARD_LIMIT_BTN = 24
 FORWARD_LIMIT_REACHED = False
