@@ -17,7 +17,7 @@ delay=`shuf -i1-3 -n1`
 
 BoxID=$( cat /home/pi/deviceid )
 rsync -auvp -e ssh /home/pi/image/ root@149.56.128.122:~/Dropbox/Pies/Images/$BoxID/
-rm `find /home/pi/image/* -mtime +15`
+rm -rf `find /home/pi/image/* -mtime +15`
 
 # remove files older than 15 days but keep stepsize and git update files
 rm `find /home/pi/SocialDrinking/* -mtime +15 |grep -v 'steps\|update'` 
