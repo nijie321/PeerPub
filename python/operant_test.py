@@ -108,7 +108,7 @@ dlogger.createDataFile(schedule="{}{}TO{}".format(schedule,str(ratio),str(timeou
 sTime = time.time()
 
 #Record images
-subprocess.Popen(['/home/pi/openbehavior/PeerPub/utility_script/photo.sh %s' % (sessionLength)], shell=True)
+subprocess.Popen(['/home/pi/openbehavior/PeerPub/utility_script/photo.sh %s %s %s' % (sessionLength, sesID, devID)], shell=True)
 
 # GLOBAL VARIABLES
 FORWARD_LIMIT_BTN = 24
