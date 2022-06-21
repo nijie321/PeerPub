@@ -28,7 +28,8 @@ sleep 5
 #sync one more time
 #rsync -auvp -e ssh /home/pi/SocialDrinking/ root@149.56.128.122:~/Dropbox/Pies/SocialDrinking/ 
 
-rsync -auvp -e ssh /home/pi/image/ hao@172.21.216.122:/disks/PeerPubImages/$BoxID
+rsync -auvp --remove-source-files -e ssh /home/pi/image/ root@149.56.128.122:/root/peerpubimages/$BoxID
+rmdir /home/pi/image/*
 rm -rf `find /home/pi/image/* -mtime +15`
 
 #rsync -auvp -e ssh /home/pi/image/ root@149.56.128.122:~/Dropbox/Pies/Images/$BoxID/
