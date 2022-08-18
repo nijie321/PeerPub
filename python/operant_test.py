@@ -155,7 +155,7 @@ while lapsed < sessionLength:
         # check if the time is between 9pm and 9am. If so, turn on the house light
         houselight_check()
 
-        time.sleep(0.05) # allow 20 licks per sec
+        time.sleep(0.07) # allow 20 licks per sec
         ina0 = mpr121.touched_pins[0]
         act1 = mpr121.touched_pins[1]
         lapsed = time.time() - sTime
