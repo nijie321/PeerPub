@@ -8,5 +8,5 @@ echo $2
 echo $3
 mkdir "/home/pi/image/$(date +"%Y-%m-%d_$3_S$2")"
 
-timeout $1 fswebcam -r 1920x1080 -S 19 --set brightness=100% --set contrast=0% --loop 1  --no-banner /home/pi/image/$(date +"%Y-%m-%d_$3_S$2")/"%F_%T_$3_S$2".jpg
+timeout $1 nice -n 10 fswebcam -r 1920x1080 -S 19 --set brightness=100% --set contrast=0% --loop 1  --no-banner /home/pi/image/$(date +"%Y-%m-%d_$3_S$2")/"%F_%T_$3_S$2".jpg
 
