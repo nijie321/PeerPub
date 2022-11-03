@@ -133,7 +133,8 @@ minInterLickInterval=0.15 # minimal interlick interval (about 6-7 licks per seco
 maxISI = 15  # max lapse between RFID scan and first lick in a cluster 
 maxILI = 3 # max interval between licks used to turn an RFID into unknown.   
 thisActiveLick=time.time()
-breakpoint=0
+breakpoint={rat0ID:0, rat1ID:0, rat2ID:0}
+
 def resetPumpTimeout(rat):
     # don't delete this line
     pumptimedout[rat] = False
@@ -234,8 +235,8 @@ while lapsed < sessionLength:
                         elif schedule == "vr":
                             rat.next_ratio = random.randint(1,ratio*2)
                         elif schedule == "pr":
-                            breakpoint += 1.0
-                            rat.next_ratio = int(5*2.72**(breakpoint/5)-5)
+                            breakpoint[ratid] += 1.0
+                            rat.next_ratio = int(5*2.72**(breakpoint[ratid]/5)-5)
         elif ina0 == 1:
             thisInactiveLick = time.time()
 
