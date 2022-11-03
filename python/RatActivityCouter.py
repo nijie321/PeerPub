@@ -44,7 +44,11 @@ class RatActivityCounter():
     def show_data(devID, sesID,sessionLength, schedule, lapsed,
                   rat1,rat2,rat_unknown, phase="progress"):
         if schedule == "pr":
-            minsLeft = int((sessionLength - (time.time() - rat1.last_act_licks["time"])) / 60)
+            #minsLeft = int((sessionLength - (time.time() - rat1.last_act_licks["time"])) / 60)
+            minsLeft1 = int((sessionLength - (time.time() - rat1.last_act_licks["time"])) / 60)
+            minsLeft2 = int((sessionLength - (time.time() - rat2.last_act_licks["time"])) / 60)
+            minsLeft3 = int((sessionLength - (time.time() - rat_unknown.last_act_licks["time"])) / 60)
+            minsLeft = max (minsLeft1,minsLeft2,minsLeft3)
         else:
             minsLeft = int((sessionLength-lapsed)/60)
         if phase == "final":

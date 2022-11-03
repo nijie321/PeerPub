@@ -135,6 +135,8 @@ vreinstate=0
 minInterLickInterval=0.15 # minimal interlick interval (about 6-7 licks per second)
 maxISI = 15  # max lapse between RFID scan and first lick in a cluster 
 maxILI = 3 # max interval between licks used to turn an RFID into unknown.   
+thisActiveLick=time.time()
+breakpoint={rat0ID:0, rat1ID:0, rat2ID:0}
 
 def resetPumpTimeout(rat):
     # don't delete this line
@@ -209,6 +211,7 @@ while lapsed < sessionLength:
                         rat.reset_touch_counter()
                         # don't delete this line
                         pumptimedout[ratid] = True
+                        rats[ratid].pumptimedout = True
 
                         # spawn a temporary timer (thread)
                         pumpTimer = Timer(timeout, resetPumpTimeout, [ratid] )
@@ -235,8 +238,8 @@ while lapsed < sessionLength:
                         elif schedule == "vr":
                             rat.next_ratio = random.randint(1,ratio*2)
                         elif schedule == "pr":
-                            breakpoint += 1.0
-                            rat.next_ratop = int(5*2.72**(breakpoint/5)-5)
+                            breakpoint[ratid] += 1.0
+                            rat.next_ratio = int(5*2.72**(breakpoint[ratid]/5)-5)
         elif ina0 == 1:
             thisInactiveLick = time.time()
 
@@ -259,7 +262,7 @@ while lapsed < sessionLength:
 
         # keep this here so that the PR data file will record lapse from sesion start 
         if schedule=="pr":
-            lapsed = time.time() - lastActiveLick
+            lapsed = time.time() - thisActiveLick
         #show data if idle more than 1 min 
         if time.time()-updateTime > 60*1:
             RatActivityCounter.show_data(devID, sesID, sessionLength, schedule, lapsed, \
