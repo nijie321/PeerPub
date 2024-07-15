@@ -50,6 +50,33 @@ args = parser.parse_args()
 datetime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 date = time.strftime("%Y-%m-%d", time.localtime())
 
+import shutil
+json_file = '/home/pi/peerpub_config.json'
+json_bak = '/home/pi/peerpub_config.json.bak'
+with open(json_file, 'r') as f:
+   try:
+       content = json.load(f)
+       f.close()
+       if content:
+            print("The JSON file is not empty and contains:", content)
+       else:
+            print("The JSON file is empty.")
+   except json.JSONDecodeError:
+       print("The JSON file does not contain valid JSON. Copy backup file")
+       shutil.copy(json_bak, json_file)
+
+with open(json_bak, 'r') as f:
+    data = json.load(f)
+    f.close()
+
+data['sessionid'] += 1  # Updating just the sessionid.
+
+with open(json_bak, 'w') as f:
+    json.dump(data, f)
+    f.close()
+
+
+
 # get device and session ids
 ids = IDS()
 #ids.sessionIncrement()
