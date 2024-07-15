@@ -50,6 +50,7 @@ args = parser.parse_args()
 datetime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 date = time.strftime("%Y-%m-%d", time.localtime())
 
+import json
 import shutil
 json_file = '/home/pi/peerpub_config.json'
 json_bak = '/home/pi/peerpub_config.json.bak'
