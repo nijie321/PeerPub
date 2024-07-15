@@ -14,6 +14,7 @@ class IDS:
         try:
             with open(JSON_CONFIG_FILE ,'r') as f:
                 json_data = json.load(f)
+                f.close()
         except FileNotFoundError:
             sys.exit("peerpub_config.json file not found in /home/pi")
             
