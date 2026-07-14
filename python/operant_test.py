@@ -131,7 +131,7 @@ updateTime=0 # time since last data print out
 vreinstate=0
 minInterLickInterval=0.15 # minimal interlick interval (about 6-7 licks per second)
 maxISI = 15  # max lapse between RFID scan and first lick in a cluster 
-maxILI = 3 # max interval between licks used to turn an RFID into unknown.   
+maxILI = 10 # max interval between licks used to turn an RFID into unknown.   
 thisActiveLick=time.time()
 breakpoint={rat0ID:0, rat1ID:0, rat2ID:0}
 
