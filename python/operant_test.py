@@ -173,7 +173,7 @@ while lapsed < sessionLength:
         if act1 == 1:
             thisActiveLick=time.time()
             
-            (ratid, scantime) = get_ratid_scantime(rats, "/home/pi/_active", thisActiveLick, True, , maxISI)
+            (ratid, scantime) = get_ratid_scantime(rats, "/home/pi/_active", thisActiveLick, True, maxILI, maxISI)
             
             try:
               rat = rats[ratid] 
@@ -243,7 +243,7 @@ while lapsed < sessionLength:
         elif ina0 == 1:
             thisInactiveLick = time.time()
 
-            (ratid, scantime) = get_ratid_scantime(rats, "/home/pi/_inactive", thisInactiveLick, False, , maxISI)
+            (ratid, scantime) = get_ratid_scantime(rats, "/home/pi/_inactive", thisInactiveLick, False, maxILI, maxISI)
 
             rat = rats[ratid] 
 
