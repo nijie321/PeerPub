@@ -178,10 +178,12 @@ if not PUMP_CALIBRATION:
 
     # file to store RFID scann times
     ids.sessionIncrement()
+    time.sleep(2)
     RFIDFILE = DATA_DIR + DATA_PREFIX + date + "_" + \
         str(ids.devID) + "_S"+str(ids.sesID) + \
         "_" + str(sessionLength) + "_RFID.csv"
-
+    open(RFIDFILE, "w").close()
+    
     print("Run {} {} for {} hour \n".format(
         schedule, str(ratio), str(int(sessionLength/3600))))
 
