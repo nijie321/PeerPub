@@ -197,7 +197,19 @@ def scan_rats():
         rat2 = input(
             "The IDs of rat1 and rat2 are identical, please scan rat2 again\n")[-8:]
 
-    return rat1, rat2
+    time.sleep(1)
+    rat3 = input("please scan rat3\n")[-8:]
+
+    while(rat3 == rat2 or rat3 == rat1):
+        rat3 = input(
+            "The IDs of rat3 and rat1 or 2 are identical, please scan rat3 again\n")[-8:]    
+    time.sleep(1)  # delay for time to get the next rat
+    rat4 = input("please scan rat4\n")[-8:]
+    while(rat4 == rat1 or rat4 == rat2 or rat4 == rat3):
+        rat4 = input(
+            "The IDs of rat4 and rat1,2,3 are identical, please scan rat4 again\n")[-8:]    
+
+    return rat1, rat2, rat3, rat4
 
 
 def record_data(fname, mode, record):
@@ -213,7 +225,7 @@ print(datetime)
 # this will remove the rfid from previous sessions
 
 
-def overwrite_id_file(rat1, rat2, poke_counts):
+def overwrite_id_file(rat1, rat2, rat3, rat4, poke_counts):
     with open("/home/pi/_inactive", "w") as f:
         record = file_format.format(rat1, str(time.time()), "inactive", str(
             time.time()-sTime), str(poke_counts[rat1]["inact"]))
@@ -232,7 +244,7 @@ if PUMP_CALIBRATION:
     pump_calibration(motor_step, "{}_steps".format(ids.devID))
 else:
     # get rats RFID
-    rat1, rat2 = scan_rats()
+    rat1, rat2, rat3, rat4 = scan_rats()
 
     print("Session started\nSchedule:{}{}TO{}\nSession Length:{}sec\n",
           schedule, str(ratio), str(timeout), str(sessionLength))
@@ -251,6 +263,8 @@ else:
                     " -sessionLength " + str(sessionLength) +
                     " -rat1ID " + str(rat1) +
                     " -rat2ID " + str(rat2) +
+                    " -rat3ID " + str(rat3) +
+                    " -rat4ID " + str(rat4) +                    
                     " -timeout " + str(timeout) +
                     " -rfidFile " + RFIDFILE +
                     " -devID " + ids.devID +
@@ -261,10 +275,10 @@ else:
                     )
 
     # initialize poke counts
-    poke_counts = {rat1: {"act": 0, "inact": 0}, rat2: {"act": 0, "inact": 0}}
+    poke_counts = {rat1: {"act": 0, "inact": 0}, rat2: {"act": 0, "inact": 0}, rat3: {"act": 0, "inact": 0}, rat4: {"act": 0, "inact": 0}}
 
     # empty the information from previous session
-    overwrite_id_file(rat1, rat2, poke_counts)
+    overwrite_id_file(rat1, rat2, rat3, rat4, poke_counts)
 
     logger.info("while loop started")
 

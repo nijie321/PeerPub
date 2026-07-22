@@ -27,8 +27,8 @@ class LickLogger:
 
     @staticmethod
     def finalLog(fname,data_dict,rfid_file):
-        ratids = [data_dict["ratID1"][0], data_dict["ratID2"][0]]
-        poke_counts = {ratids[0]:{"act":0, "inact": 0}, ratids[1]:{"act":0, "inact":0}}
+        ratids = [data_dict["ratID1"][0], data_dict["ratID2"][0], data_dict["ratID3"][0], data_dict["ratID4"][0]]
+        poke_counts = {ratids[0]:{"act":0, "inact": 0}, ratids[1]:{"act":0, "inact":0}, ratids[2]:{"act":0, "inact":0}, ratids[3]:{"act":0, "inact":0}}
 
         # read the poke counts from rfid files
         with open(rfid_file, "r") as f:
@@ -45,8 +45,10 @@ class LickLogger:
             print(DATA_DIR + "/" + fname)
             ID1_str = (("{}\t"*13).format(*data_dict["ratID1"], poke_counts[ratids[0]]["act"], poke_counts[ratids[0]]["inact"])) + "\n"
             ID2_str = (("{}\t"*13).format(*data_dict["ratID2"], poke_counts[ratids[1]]["act"], poke_counts[ratids[1]]["inact"])) + "\n"
+            ID3_str = (("{}\t"*13).format(*data_dict["ratID3"], poke_counts[ratids[2]]["act"], poke_counts[ratids[2]]["inact"])) + "\n"
+            ID4_str = (("{}\t"*13).format(*data_dict["ratID4"], poke_counts[ratids[3]]["act"], poke_counts[ratids[3]]["inact"])) + "\n"
             ID0_str = (("{}\t"*13).format(*data_dict["ratID0"], 0, 0)) + "\n"
-            f.write(ID1_str + ID2_str + ID0_str)
+            f.write(ID1_str + ID2_str + ID3_str + ID4_str + ID0_str)
         
                 
 
