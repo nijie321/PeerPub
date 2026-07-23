@@ -42,7 +42,7 @@ class RatActivityCounter():
 
     @staticmethod
     def show_data(devID, sesID,sessionLength, schedule, lapsed,
-                  rat1,rat2,rat_unknown, phase="progress"):
+                  rat1,rat2,rat3,rat4,rat_unknown, phase="progress"):
         if schedule == "pr":
             #minsLeft = int((sessionLength - (time.time() - rat1.last_act_licks["time"])) / 60)
             minsLeft1 = int((sessionLength - (time.time() - rat1.last_act_licks["time"])) / 60)
@@ -58,7 +58,7 @@ class RatActivityCounter():
                 "[" + str(minsLeft) + " min Left]" + \
                 "\x1b[0m")
 
-        for rat in [rat1,rat2,rat_unknown]:
+        for rat in [rat1,rat2,rat3,rat4,rat_unknown]:
             RatActivityCounter.colored_print(rat.ratid, rat.active_licks,
                                              rat.inactive_licks, rat.rewards,
                                              rat.pumptimedout)
